@@ -9,6 +9,10 @@ app.get('/*', (req, res) => {
 	res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
 });
 
+app.get('/api/test', (req, res) => {
+	res.send('ok');
+});
+
 app.listen(process.env.PORT || 3000, () => {
 	console.log('The application is listening on port 3000!');
 });
