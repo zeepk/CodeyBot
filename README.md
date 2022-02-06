@@ -1,9 +1,4 @@
-# TypeScript Node Express Template
-Template project for a Node app with Express and TypeScript
+# Meet Codey, the Discord Bot
+He can help announce your Github repo's releases, pushes, pull requests and more to your Discord server.
 
-# Instructions
-Pretty simple, really
-
-1. Clone with `git clone https://github.com/zeepk/typescript-node-express-template.git`
-2. Install node modules with `npm install`
-3. Run with `npm start` which uses `ts-node-dev` to stay up to date with your TypeScript changes
+He's currently under construction, so hang tight and feel free to make suggestions!
