@@ -1,10 +1,17 @@
-import express from 'express';
 import path from 'path';
 import dotenv from 'dotenv';
-import Discord, { TextChannel } from 'discord.js';
+import express from 'express';
+import mongoose from 'mongoose';
 import { json } from 'body-parser';
 var bodyParser = require('body-parser');
+import { profileRouter } from './src/routes/profiles';
+import Discord, { TextChannel } from 'discord.js';
 dotenv.config();
+
+const connectionString = process.env.MONGO_DB_CONN_STRING;
+if (connectionString) {
+	mongoose.connect(connectionString);
+}
 
 const client = new Discord.Client({
 	allowedMentions: {
@@ -48,6 +55,8 @@ app.use(express.static(path.join(__dirname, 'client', 'build')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(json());
+
+app.use(profileRouter);
 
 app.get('/api/test', (req, res) => {
 	res.send('ok');
