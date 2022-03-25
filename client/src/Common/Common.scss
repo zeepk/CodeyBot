@@ -1,0 +1,23 @@
+$lightBlue: #cdefff;
+$textBlack: #272727;
+
+.toolbar {
+	display: flex;
+	justify-content: space-between;
+	background-color: $lightBlue;
+	color: $textBlack;
+	height: 3rem;
+	.logo {
+		max-height: 3rem;
+		padding-right: 1rem;
+	}
+	.circle {
+		height: 3rem;
+		width: 3rem;
+		border-radius: 50%;
+	}
+}
+.loading-screen {
+	height: 70vh;
+	width: 100vw;
+}
