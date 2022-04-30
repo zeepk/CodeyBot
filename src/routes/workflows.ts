@@ -5,7 +5,7 @@ import { isNullUndefinedOrWhitespace } from "../utils/helperFunctions";
 import { maxUserNameLength, minUserNameLength } from "../utils/constants";
 const router = express.Router();
 
-router.post("/api/profile", async (req: Request, res: Response) => {
+router.post("/api/workflows/generate", async (req: Request, res: Response) => {
   const { authId } = req.body;
   const resp: ApiResponse = {
     success: true,
@@ -24,9 +24,8 @@ router.post("/api/profile", async (req: Request, res: Response) => {
     // not logged in
     const message = "Profile not created yet";
     resp.message = message;
-    resp.success = false;
     console.error(message);
-    return res.status(200).send(resp);
+    return res.status(404).send(resp);
   }
 
   resp.data = profile;
