@@ -3,42 +3,58 @@ $textBlack: #272727;
 $errorRed: #d32f2f;
 
 .toolbar {
-  display: flex;
-  justify-content: space-between;
-  background-color: $lightBlue;
-  color: $textBlack;
-  height: 3rem;
-  .logo {
-    max-height: 3rem;
-    padding-right: 1rem;
-  }
-  .circle {
-    height: 3rem;
-    width: 3rem;
-    border-radius: 50%;
-  }
+	display: flex;
+	justify-content: space-between;
+	background-color: $lightBlue;
+	color: $textBlack;
+	height: 3rem;
+	.home {
+		cursor: pointer;
+
+		.logo {
+			max-height: 3rem;
+			padding-right: 1rem;
+		}
+	}
+	.circle {
+		height: 3rem;
+		width: 3rem;
+		border-radius: 50%;
+	}
+	.link {
+		margin-left: 1rem;
+	}
 }
-.loading-screen {
-  height: 70vh;
-  width: 100vw;
+.loading-screen,
+.error-screen {
+	height: 70vh;
+	width: 100vw;
+
+	a {
+		color: $lightBlue;
+		text-decoration: underline;
+		padding-top: 1rem;
+		font-size: 1.2rem;
+	}
 }
 .container--signup {
-  padding: 2rem;
-  div {
-    width: 90vw;
-    max-width: 20rem;
-    .username {
-      margin-top: 1rem;
-      *:not(.Mui-error) {
-        color: white;
-        fieldset:not(.Mui-error) {
-          border-color: white !important;
-        }
-      }
-    }
-    .error {
-      margin-top: 0.5rem;
-      color: $errorRed;
-    }
-  }
+	padding: 2rem;
+	.container--input {
+		width: 90vw;
+		max-width: 20rem;
+		height: 15rem;
+		.username {
+			margin-top: 1rem;
+			*:not(.Mui-error) {
+				color: white;
+				fieldset:not(.Mui-error) {
+					border-color: white !important;
+				}
+			}
+		}
+		.error {
+			margin-top: 0.5rem;
+			color: $errorRed;
+		}
+	}
 }
