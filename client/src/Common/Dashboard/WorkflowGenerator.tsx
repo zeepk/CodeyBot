@@ -1,44 +1,56 @@
-import Button from "@mui/material/Button";
-import { useState } from "react";
-import { generateWorkflow } from "../../ClientServer";
-import LoadingScreen from "../../Common/LoadingScreen";
-import SyntaxHighlighter from "react-syntax-highlighter";
-import { a11yDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import Button from '@mui/material/Button';
+import Paper from '@mui/material/Paper';
+import TextField from '@mui/material/TextField';
+import IconButton from '@mui/material/IconButton';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import { a11yDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 type Props = {
-  authId: string;
+    secret: string;
+    workflow: string;
+    handleBack: () => void;
 };
 
-export default function Dashboard({ authId }: Props) {
-  const [isLoading, setIsLoading] = useState(false);
-  const [workflow, setWorkflow] = useState<string | undefined>(undefined);
-
-  const handleGenerate = async () => {
-    setIsLoading(true);
-    const { data } = await generateWorkflow({ authId });
-    setWorkflow(data.workflow);
-    setIsLoading(false);
-  };
-
-  if (isLoading) {
-    return <LoadingScreen />;
-  }
-
-  return (
-    <div className="d-flex flex-column ai-center jc-center">
-      <Button variant="contained" onClick={() => handleGenerate()}>
-        Generate
-      </Button>
-      {workflow && (
-        <SyntaxHighlighter
-          customStyle={{ textAlign: "left" }}
-          language="yaml"
-          style={a11yDark}
-          showLineNumbers
-        >
-          {workflow}
-        </SyntaxHighlighter>
-      )}
-    </div>
-  );
+export default function WorkflowGenerator({
+    secret,
+    workflow,
+    handleBack,
+}: Props) {
+    return (
+        <div className="d-flex flex-column ai-center jc-center workflow">
+            <Button variant="contained" onClick={() => handleBack()}>
+                Back to config
+            </Button>
+            <Paper
+                elevation={3}
+                className="secret d-flex flex-row ai-center jc-between"
+            >
+                <h3>Github Secret:</h3>
+                <div className="d-flex flex-row ai-center jc-between">
+                    <TextField
+                        className="secret-input"
+                        InputProps={{
+                            readOnly: true,
+                        }}
+                        value={secret}
+                    />
+                    <IconButton
+                        aria-label="copy"
+                        onClick={() => navigator.clipboard.writeText(secret)}
+                    >
+                        <ContentCopyIcon />
+                    </IconButton>
+                </div>
+            </Paper>
+            <SyntaxHighlighter
+                customStyle={{ textAlign: 'left' }}
+                language="yaml"
+                style={a11yDark}
+                showLineNumbers
+            >
+                {workflow}
+            </SyntaxHighlighter>
+        </div>
+    );
 }

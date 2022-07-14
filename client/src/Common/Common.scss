@@ -3,58 +3,114 @@ $textBlack: #272727;
 $errorRed: #d32f2f;
 
 .toolbar {
-	display: flex;
-	justify-content: space-between;
-	background-color: $lightBlue;
-	color: $textBlack;
-	height: 3rem;
-	.home {
-		cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    background-color: $lightBlue;
+    color: $textBlack;
+    height: 3rem;
+    .home {
+        cursor: pointer;
 
-		.logo {
-			max-height: 3rem;
-			padding-right: 1rem;
-		}
-	}
-	.circle {
-		height: 3rem;
-		width: 3rem;
-		border-radius: 50%;
-	}
-	.link {
-		margin-left: 1rem;
-	}
+        .logo {
+            max-height: 3rem;
+            padding-right: 1rem;
+        }
+    }
+    .circle {
+        height: 3rem;
+        width: 3rem;
+        border-radius: 50%;
+    }
+    .link {
+        margin-left: 1rem;
+    }
 }
 .loading-screen,
 .error-screen {
-	height: 70vh;
-	width: 100vw;
+    height: 70vh;
+    width: 100vw;
 
-	a {
-		color: $lightBlue;
-		text-decoration: underline;
-		padding-top: 1rem;
-		font-size: 1.2rem;
-	}
+    a {
+        color: $lightBlue;
+        text-decoration: underline;
+        padding-top: 1rem;
+        font-size: 1.2rem;
+    }
 }
 .container--signup {
-	padding: 2rem;
-	.container--input {
-		width: 90vw;
-		max-width: 20rem;
-		height: 15rem;
-		.username {
-			margin-top: 1rem;
-			*:not(.Mui-error) {
-				color: white;
-				fieldset:not(.Mui-error) {
-					border-color: white !important;
-				}
-			}
-		}
-		.error {
-			margin-top: 0.5rem;
-			color: $errorRed;
-		}
-	}
+    padding: 2rem;
+    .container--input {
+        width: 90vw;
+        max-width: 20rem;
+        height: 15rem;
+        .username {
+            margin-top: 1rem;
+            *:not(.Mui-error) {
+                color: white;
+                fieldset:not(.Mui-error) {
+                    border-color: white !important;
+                }
+            }
+        }
+        .error {
+            margin-top: 0.5rem;
+            color: $errorRed;
+        }
+    }
+}
+.workflow {
+    * {
+        max-width: 80vw;
+    }
+    .secret {
+        width: 100%;
+        margin: 1rem;
+        padding: 0.3rem 2rem;
+        background-color: #383838;
+        h3 {
+            width: 40%;
+            color: white;
+            white-space: nowrap;
+            text-align: left;
+        }
+        > div {
+            width: 60%;
+            * {
+                color: white;
+            }
+
+            .secret-input {
+                width: 90%;
+                > div {
+                    background: #484848;
+                }
+            }
+        }
+    }
+}
+.config {
+    width: 100%;
+    position: relative;
+    .reset {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+    }
+    .checkbox-container {
+        margin: 1rem;
+        padding: 1rem;
+        width: 70%;
+        min-height: 20rem;
+        background: #bac6cb;
+        * {
+            color: #262626;
+        }
+        .config-option {
+            width: 90%;
+            margin: 0.5rem;
+            > div > div {
+                margin: 0 0.3rem;
+            }
+        }
+    }
 }
