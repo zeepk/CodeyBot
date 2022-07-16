@@ -1,6 +1,6 @@
 import requestWrapper from './utils/requestWrapper';
 import { WorkflowOptions } from './utils/constants';
-const baseUrl = 'http://localhost:8080/api';
+const baseUrl = `${process.env.REACT_APP_API_URL}/api`;
 
 export async function getProfile(data: { authId: string }) {
     const requestOptions = {

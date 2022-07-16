@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express';
 import { Profile } from '../models/profile';
 import { ApiResponse } from '../utils/customTypes';
 import { randomUUID } from 'crypto';
+import { getChannelId } from '../utils/helperFunctions';
 const router = express.Router();
 
 router.post('/api/workflows/generate', async (req: Request, res: Response) => {
@@ -41,6 +42,7 @@ name: Discord Log Messages
 `;
 
     if (options.includePushes) {
+        const channelId = getChannelId(options.pushChannel);
         workflow += `
 on:
   push:
@@ -54,7 +56,7 @@ jobs:
         uses: JamesIves/fetch-api-data-action@v2.1.0
         with:
           endpoint: endpoint: https://codey-bot.herokuapp.com/api/send
-          configuration: '{ "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"channelId": "933990639178252308", "message": "nice", "secret": "\${{ secrets.CODEYBOT_TOKEN }}"} }'
+          configuration: '{ "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"channelId": "${channelId}", "message": "${options.pushMessage}", "secret": "\${{ secrets.CODEYBOT_TOKEN }}"} }'
     `;
     }
 

@@ -1,10 +1,12 @@
-import Button from '@mui/material/Button';
-import Checkbox from '@mui/material/Checkbox';
-import Paper from '@mui/material/Paper';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import TextField from '@mui/material/TextField';
-import { WorkflowOptions, defaultOptions } from '../../utils/constants';
+import {
+    Button,
+    Checkbox,
+    FormControlLabel,
+    Paper,
+    TextField,
+} from '@mui/material';
 import { useState } from 'react';
+import { defaultOptions, WorkflowOptions } from '../../utils/constants';
 
 type Props = {
     generateWorkflow: (data: WorkflowOptions) => void;
@@ -19,10 +21,32 @@ export default function WorkflowConfig({
         initialOptions ?? defaultOptions
     );
 
+    // validation
+    const pushMessageInvalid = options.includePushes && !options.pushMessage;
+    const pushChannelInvalid =
+        options.includePushes &&
+        (!options.pushChannel || options.pushChannel.length < 18);
+    const releaseMessageInvalid =
+        options.includeRelease && !options.releaseMessage;
+    const releaseChannelInvalid =
+        options.includeRelease &&
+        (!options.releaseChannel || options.releaseChannel.length < 18);
+
+    const noOptionsChecked = !(options.includePushes || options.includeRelease);
+
+    const formInvalid = [
+        noOptionsChecked,
+        pushMessageInvalid,
+        pushChannelInvalid,
+        releaseMessageInvalid,
+        releaseChannelInvalid,
+    ].some(i => i);
+
     return (
         <div className="d-flex flex-column ai-center jc-between config">
             <Button
                 variant="contained"
+                disabled={formInvalid}
                 onClick={() => generateWorkflow(options)}
             >
                 Generate
@@ -41,7 +65,7 @@ export default function WorkflowConfig({
             >
                 <div className="config-option d-flex flex-row ai-center jc-between">
                     <FormControlLabel
-                        label="Inclued Pushes"
+                        label="Include Pushes"
                         control={
                             <Checkbox
                                 checked={options.includePushes}
@@ -57,21 +81,10 @@ export default function WorkflowConfig({
                     <div className="d-flex flex-row ai-center jc-end">
                         <TextField
                             id="outlined-required"
-                            label="Message"
-                            color="primary"
-                            disabled={!options.includePushes}
-                            onChange={(e: any) =>
-                                setOptions({
-                                    ...options,
-                                    pushMessage: e.target.value,
-                                })
-                            }
-                        />
-                        <TextField
-                            id="outlined-required"
                             label="Branches"
                             color="primary"
                             disabled={!options.includePushes}
+                            value={options.pushBranches}
                             onChange={(e: any) =>
                                 setOptions({
                                     ...options,
@@ -81,10 +94,25 @@ export default function WorkflowConfig({
                         />
                         <TextField
                             id="outlined-required"
-                            label="Channel"
-                            helperText="Copy link to share your discord channel"
+                            label="Message"
                             color="primary"
                             disabled={!options.includePushes}
+                            value={options.pushMessage}
+                            error={pushMessageInvalid}
+                            onChange={(e: any) =>
+                                setOptions({
+                                    ...options,
+                                    pushMessage: e.target.value,
+                                })
+                            }
+                        />
+                        <TextField
+                            id="outlined-required"
+                            label="Channel"
+                            color="primary"
+                            disabled={!options.includePushes}
+                            value={options.pushChannel}
+                            error={pushChannelInvalid}
                             onChange={(e: any) =>
                                 setOptions({
                                     ...options,
@@ -96,14 +124,14 @@ export default function WorkflowConfig({
                 </div>
                 <div className="config-option d-flex flex-row ai-center jc-between">
                     <FormControlLabel
-                        label="Inclued Releases"
+                        label="Include Releases"
                         control={
                             <Checkbox
-                                checked={options.includeReleases}
+                                checked={options.includeRelease}
                                 onChange={(e: any) =>
                                     setOptions({
                                         ...options,
-                                        includeReleases: e.target.checked,
+                                        includeRelease: e.target.checked,
                                     })
                                 }
                             />
@@ -114,11 +142,27 @@ export default function WorkflowConfig({
                             id="outlined-required"
                             label="Message"
                             color="primary"
-                            disabled={!options.includeReleases}
+                            disabled={!options.includeRelease}
+                            value={options.releaseMessage}
+                            error={releaseMessageInvalid}
                             onChange={(e: any) =>
                                 setOptions({
                                     ...options,
-                                    releasesMessage: e.target.value,
+                                    releaseMessage: e.target.value,
+                                })
+                            }
+                        />
+                        <TextField
+                            id="outlined-required"
+                            label="Channel"
+                            color="primary"
+                            disabled={!options.includeRelease}
+                            value={options.releaseChannel}
+                            error={releaseChannelInvalid}
+                            onChange={(e: any) =>
+                                setOptions({
+                                    ...options,
+                                    releaseChannel: e.target.value,
                                 })
                             }
                         />

@@ -11,8 +11,9 @@ export type WorkflowOptions = {
     pushMessage: string;
     pushBranches: string;
     pushChannel: string;
-    includeReleases: boolean;
-    releasesMessage: string;
+    includeRelease: boolean;
+    releaseMessage: string;
+    releaseChannel: string;
 };
 
 export const defaultOptions: WorkflowOptions = {
@@ -20,6 +21,7 @@ export const defaultOptions: WorkflowOptions = {
     pushMessage: '',
     pushBranches: `"*"`,
     pushChannel: '',
-    includeReleases: false,
-    releasesMessage: '',
+    includeRelease: false,
+    releaseMessage: '',
+    releaseChannel: '',
 };
