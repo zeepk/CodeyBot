@@ -63,7 +63,7 @@ $errorRed: #d32f2f;
         max-width: 80vw;
     }
     .secret {
-        width: 100%;
+        width: 80%;
         margin: 1rem;
         padding: 0.3rem 2rem;
         background-color: #383838;
@@ -87,6 +87,15 @@ $errorRed: #d32f2f;
             }
         }
     }
+    .highlighter {
+	    position: relative;
+	    .copy {
+		    position: absolute;
+		    top: 1.5rem;
+		    right: 1rem;
+		    color: white;
+}
+}
 }
 .config {
     width: 100%;
@@ -101,16 +110,23 @@ $errorRed: #d32f2f;
         padding: 1rem;
         width: 70%;
         min-height: 20rem;
-        background: #bac6cb;
+        // background: #bac6cb;
+        background: $lightBlue;
         * {
             color: #262626;
         }
+	button {
+		color: white;
+	}
+	.configs {
+            width: 95%;
         .config-option {
-            width: 90%;
+            width: 100%;
             margin: 0.5rem;
             > div > div {
                 margin: 0 0.3rem;
             }
+        }
         }
     }
 }

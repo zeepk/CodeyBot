@@ -43,6 +43,15 @@ export default function WorkflowGenerator({
                     </IconButton>
                 </div>
             </Paper>
+
+                <div className="highlighter">
+                    <IconButton
+		    className="copy"
+                        aria-label="copy"
+                        onClick={() => navigator.clipboard.writeText(workflow)}
+                    >
+                        <ContentCopyIcon />
+                    </IconButton>
             <SyntaxHighlighter
                 customStyle={{ textAlign: 'left' }}
                 language="yaml"
@@ -51,6 +60,7 @@ export default function WorkflowGenerator({
             >
                 {workflow}
             </SyntaxHighlighter>
+        </div>
         </div>
     );
 }

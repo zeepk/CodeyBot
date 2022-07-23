@@ -44,25 +44,11 @@ export default function WorkflowConfig({
 
     return (
         <div className="d-flex flex-column ai-center jc-between config">
-            <Button
-                variant="contained"
-                disabled={formInvalid}
-                onClick={() => generateWorkflow(options)}
-            >
-                Generate
-            </Button>
-            <Button
-                className="reset"
-                variant="contained"
-                color="warning"
-                onClick={() => setOptions(defaultOptions)}
-            >
-                Reset
-            </Button>
             <Paper
                 elevation={3}
-                className="d-flex flex-column ai-start jc-start checkbox-container flex-wrap"
+                className="d-flex flex-column ai-start jc-between checkbox-container flex-wrap"
             >
+                <div className="configs d-flex flex-column ai-center jc-start checkbox-container flex-wrap">
                 <div className="config-option d-flex flex-row ai-center jc-between">
                     <FormControlLabel
                         label="Include Pushes"
@@ -168,6 +154,16 @@ export default function WorkflowConfig({
                         />
                     </div>
                 </div>
+                </div>
+        <div className="d-flex flex-column ai-center config">
+            <Button
+                variant="contained"
+                disabled={formInvalid}
+                onClick={() => generateWorkflow(options)}
+            >
+                Generate
+            </Button>
+        </div>
             </Paper>
         </div>
     );

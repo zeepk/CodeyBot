@@ -55,7 +55,7 @@ jobs:
       - name: Send Push Message
         uses: JamesIves/fetch-api-data-action@v2.1.0
         with:
-          endpoint: endpoint: https://codey-bot.herokuapp.com/api/send
+          endpoint: https://codey-bot.herokuapp.com/api/send
           configuration: '{ "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"channelId": "${channelId}", "message": "${options.pushMessage}", "secret": "\${{ secrets.CODEYBOT_TOKEN }}"} }'
     `;
     }
