@@ -43,7 +43,6 @@ export default function Dashboard({ profile }: Props) {
 
     return (
         <div className="d-flex flex-column ai-center jc-center">
-            <h2>Hey, {profile.username}!</h2>
             {workflow && secret ? (
                 <WorkflowGenerator
                     secret={secret}

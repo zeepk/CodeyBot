@@ -19,7 +19,7 @@ export type WorkflowOptions = {
 export const defaultOptions: WorkflowOptions = {
     includePushes: false,
     pushMessage: '',
-    pushBranches: `"*"`,
+    pushBranches: '',
     pushChannel: '',
     includeRelease: false,
     releaseMessage: '',

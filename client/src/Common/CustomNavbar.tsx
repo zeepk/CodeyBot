@@ -18,15 +18,6 @@ export default function CustomNavbar() {
                         <img src={Logo} alt="CodeyBot" className="logo" />
                         <h1>Codey</h1>
                     </div>
-                    {isAuthenticated && (
-                        <Button
-                            className="link"
-                            variant="contained"
-                            onClick={() => navigate('dashboard')}
-                        >
-                            Dashboard
-                        </Button>
-                    )}
                 </div>
                 {isAuthenticated ? (
                     <div className="d-flex">

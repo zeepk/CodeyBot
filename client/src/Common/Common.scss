@@ -88,14 +88,14 @@ $errorRed: #d32f2f;
         }
     }
     .highlighter {
-	    position: relative;
-	    .copy {
-		    position: absolute;
-		    top: 1.5rem;
-		    right: 1rem;
-		    color: white;
-}
-}
+        position: relative;
+        .copy {
+            position: absolute;
+            top: 1.5rem;
+            right: 1rem;
+            color: white;
+        }
+    }
 }
 .config {
     width: 100%;
@@ -106,30 +106,54 @@ $errorRed: #d32f2f;
         right: 1rem;
     }
     .checkbox-container {
-        margin: 1rem;
+        margin: 5rem 1rem 1rem 1rem;
         padding: 1rem;
         width: 70%;
         min-height: 20rem;
         // background: #bac6cb;
-        background: $lightBlue;
+        // background: $lightBlue;
+        background-color: #bcdbd3;
         * {
             color: #262626;
         }
-	button {
-		color: white;
-	}
-	.configs {
-            width: 95%;
-        .config-option {
-            width: 100%;
-            margin: 0.5rem;
-            > div > div {
-                margin: 0 0.3rem;
-            }
+        button {
+            color: white;
         }
+        .configs {
+            width: 95%;
+            padding: 1rem;
+            .config-option {
+                width: 100%;
+                margin: 0.5rem;
+                > div > div {
+                    margin: 0 0.3rem;
+                }
+            }
         }
     }
 }
 button.Mui-disabled {
     background-color: gray !important;
+}
+.help {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40rem;
+    max-width: 90vw;
+
+    .help-container {
+        width: 100%;
+        padding: 5rem 1rem;
+        div {
+            width: 100%;
+            h3 {
+                width: 30%;
+            }
+            p {
+                width: 60%;
+            }
+        }
+    }
 }

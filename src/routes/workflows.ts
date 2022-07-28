@@ -36,17 +36,19 @@ router.post('/api/workflows/generate', async (req: Request, res: Response) => {
     }
     const secret = profile.githubSecret;
 
-    let workflow = `# generated using CodeyBot
+    let workflow = `# generated with <3 by CodeyBot
 name: Discord Log Messages
 
 `;
 
     if (options.includePushes) {
         const channelId = getChannelId(options.pushChannel);
+        const branches =
+            options.pushBranches?.length === 0 ? '"*"' : options.pushBranches;
         workflow += `
 on:
   push:
-      branches: ${options.pushBranches}
+      branches: [${branches}]
 
 jobs:
   discord-message:

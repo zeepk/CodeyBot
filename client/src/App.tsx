@@ -8,22 +8,26 @@ import NewUser from './Common/NewUser';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
-	const { isLoading } = useAuth0();
-	return (
-		<div className="App">
-			<BrowserRouter>
-				<CustomNavbar />
-				{isLoading ? (
-					<LoadingScreen />
-				) : (
-					<Routes>
-						<Route path="/" element={<NewUser />}></Route>
-						<Route path="dashboard" element={<ExistingUser />}></Route>
-					</Routes>
-				)}
-			</BrowserRouter>
-		</div>
-	);
+    const { isLoading, isAuthenticated } = useAuth0();
+    return (
+        <div className="App">
+            <BrowserRouter>
+                <CustomNavbar />
+                {isLoading ? (
+                    <LoadingScreen />
+                ) : (
+                    <Routes>
+                        <Route
+                            path="/"
+                            element={
+                                isAuthenticated ? <ExistingUser /> : <NewUser />
+                            }
+                        ></Route>
+                    </Routes>
+                )}
+            </BrowserRouter>
+        </div>
+    );
 }
 
 export default App;
