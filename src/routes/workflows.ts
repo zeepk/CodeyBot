@@ -36,16 +36,15 @@ router.post('/api/workflows/generate', async (req: Request, res: Response) => {
     }
     const secret = profile.githubSecret;
 
-    let workflow = `# generated with <3 by CodeyBot
-name: Discord Log Messages
-
-`;
+    const workflows: string[] = [];
 
     if (options.includePushes) {
         const channelId = getChannelId(options.pushChannel);
         const branches =
             options.pushBranches?.length === 0 ? '"*"' : options.pushBranches;
-        workflow += `
+        workflows.push(`# generated with <3 by CodeyBot
+name: Log Pushes in Discord
+
 on:
   push:
       branches: [${branches}]
@@ -59,12 +58,33 @@ jobs:
         with:
           endpoint: https://codey-bot.herokuapp.com/api/send
           configuration: '{ "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"channelId": "${channelId}", "message": "${options.pushMessage}", "secret": "\${{ secrets.CODEYBOT_TOKEN }}"} }'
-    `;
+    `);
+    }
+
+    if (options.includeRelease) {
+        const channelId = getChannelId(options.releaseChannel);
+        workflows.push(`# generated with <3 by CodeyBot
+name: Log Releases in Discord
+
+on:
+  release:
+      types: [published]
+
+jobs:
+  discord-message:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Release Message
+        uses: JamesIves/fetch-api-data-action@v2.1.0
+        with:
+          endpoint: https://codey-bot.herokuapp.com/api/send
+          configuration: '{ "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"channelId": "${channelId}", "message": "${options.releaseMessage}", "secret": "\${{ secrets.CODEYBOT_TOKEN }}"} }'
+    `);
     }
 
     resp.data = {
         secret,
-        workflow,
+        workflows,
     };
     return res.status(200).send(resp);
 });

@@ -7,7 +7,8 @@ export default function ModalHelpContent() {
                 elevation={3}
                 className="d-flex flex-column ai-center jc-between help-container flex-wrap"
             >
-                <div className="d-flex flex-row ai-center jc-between">
+                <h1 className="title">Help</h1>
+                <div className="d-flex flex-row ai-start jc-between">
                     <h3>Branches</h3>
                     <p>
                         Enter a comma separated list of the branches this action
@@ -15,7 +16,7 @@ export default function ModalHelpContent() {
                         branches. Ex. "main, dev"
                     </p>
                 </div>
-                <div className="d-flex flex-row ai-center jc-between">
+                <div className="d-flex flex-row ai-start jc-between">
                     <h3>Message</h3>
                     <p>
                         The message which should be sent when the action is
@@ -23,7 +24,7 @@ export default function ModalHelpContent() {
                         repo!"
                     </p>
                 </div>
-                <div className="d-flex flex-row ai-center jc-between">
+                <div className="d-flex flex-row ai-start jc-between">
                     <h3>Channel</h3>
                     <p>
                         Paste the channel ID for the Discord channel in which

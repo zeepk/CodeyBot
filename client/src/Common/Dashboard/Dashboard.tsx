@@ -18,7 +18,7 @@ export default function Dashboard({ profile }: Props) {
     const { user } = useAuth0();
     const authId = user?.sub;
     const [isLoading, setIsLoading] = useState(false);
-    const [workflow, setWorkflow] = useState<string | undefined>(undefined);
+    const [workflows, setWorkflows] = useState<string[] | undefined>(undefined);
     const [secret, setSecret] = useState<string | undefined>(undefined);
     const [options, setOptions] = useState<WorkflowOptions>(defaultOptions);
 
@@ -30,12 +30,12 @@ export default function Dashboard({ profile }: Props) {
         setOptions(options);
         setIsLoading(true);
         const { data } = await generateWorkflow({ authId, options });
-        setWorkflow(data.workflow);
+        setWorkflows(data.workflows);
         setSecret(data.secret);
         setIsLoading(false);
     };
 
-    const handleBack = () => setWorkflow(undefined);
+    const handleBack = () => setWorkflows(undefined);
 
     if (isLoading) {
         return <LoadingScreen />;
@@ -43,10 +43,10 @@ export default function Dashboard({ profile }: Props) {
 
     return (
         <div className="d-flex flex-column ai-center jc-center">
-            {workflow && secret ? (
+            {workflows && secret ? (
                 <WorkflowGenerator
                     secret={secret}
-                    workflow={workflow}
+                    workflows={workflows}
                     handleBack={() => handleBack()}
                 />
             ) : (

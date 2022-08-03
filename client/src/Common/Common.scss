@@ -15,6 +15,10 @@ $errorRed: #d32f2f;
             max-height: 3rem;
             padding-right: 1rem;
         }
+        .discord-logo {
+            max-height: 2rem;
+            padding-left: 0.5rem;
+        }
     }
     .circle {
         height: 3rem;
@@ -23,6 +27,10 @@ $errorRed: #d32f2f;
     }
     .link {
         margin-left: 1rem;
+    }
+    .add-button {
+        margin-left: 1rem;
+        background: #5865f2;
     }
 }
 .loading-screen,
@@ -59,8 +67,14 @@ $errorRed: #d32f2f;
     }
 }
 .workflow {
+    padding: 5rem;
     * {
         max-width: 80vw;
+    }
+    .buttons {
+        button {
+            margin: 0 0.5rem;
+        }
     }
     .secret {
         width: 80%;
@@ -145,11 +159,54 @@ button.Mui-disabled {
 
     .help-container {
         width: 100%;
-        padding: 5rem 1rem;
+        padding: 3rem 3rem;
+        .title {
+            width: 100%;
+            text-align: left;
+        }
         div {
             width: 100%;
             h3 {
                 width: 30%;
+            }
+            p {
+                width: 60%;
+            }
+        }
+    }
+}
+.help-action {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 65rem;
+    max-width: 90vw;
+    height: 40rem;
+
+    .help-container {
+        width: 90%;
+        height: 90%;
+        padding: 3rem 3rem;
+        overflow-y: scroll;
+        .title {
+            width: 100%;
+            text-align: left;
+        }
+        .help-image {
+            max-width: 100%;
+            margin-bottom: 5rem;
+        }
+        div {
+            width: 100%;
+            h3 {
+                width: 30%;
+            }
+            div {
+                width: 60%;
+                > p {
+                    width: 100%;
+                }
             }
             p {
                 width: 60%;

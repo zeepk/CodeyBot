@@ -7,6 +7,7 @@ import cors from 'cors';
 var bodyParser = require('body-parser');
 import { profileRouter } from './src/routes/profiles';
 import { workflowRouter } from './src/routes/workflows';
+import { Profile } from './src/models/profile';
 import Discord, { TextChannel } from 'discord.js';
 dotenv.config();
 
@@ -26,9 +27,7 @@ const client = new Discord.Client({
 client.on('ready', () => {
     console.log('CodeyBot running...');
 });
-
 client.login(process.env.BOT_TOKEN);
-
 // this listens for a message, usefull for !commands
 
 // client.on('messageCreate', async (message) => {
@@ -76,9 +75,30 @@ app.get('/api/test', (req, res) => {
     res.send('ok');
 });
 
-app.post('/api/send', (req, res) => {
+app.post('/api/workflows/send', async (req, res) => {
     const { channelId, secret, authId, message } = req.body;
-    console.log(channelId, secret, message);
+    if (!channelId || !secret || !authId || !message) {
+        const errorMessage = 'Invalid arguments';
+        console.error(errorMessage);
+        res.status(500).send(errorMessage);
+        return;
+    }
+
+    const profile = await Profile.findOne({ authId: authId });
+    if (!profile) {
+        const errorMessage = 'No profile found';
+        console.error(errorMessage);
+        res.status(500).send(errorMessage);
+        return;
+    }
+
+    if (profile.githubSecret !== secret) {
+        const errorMessage = 'Invalid secret provided';
+        console.error(errorMessage);
+        res.status(500).send(errorMessage);
+        return;
+    }
+
     if (!client || !client.channels || !client.channels.cache) {
         const errorMessage = 'Error reading client channels';
         console.error(errorMessage);
