@@ -56,8 +56,8 @@ jobs:
       - name: Send Push Message
         uses: JamesIves/fetch-api-data-action@v2.1.0
         with:
-          endpoint: https://codey-bot.herokuapp.com/api/send
-          configuration: '{ "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"channelId": "${channelId}", "message": "${options.pushMessage}", "secret": "\${{ secrets.CODEYBOT_TOKEN }}"} }'
+          endpoint: https://codey-bot.herokuapp.com/api/workflows/send
+          configuration: '{ "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"channelId": "${channelId}", "message": "${options.pushMessage}", "authId": "${authId}", "secret": "\${{ secrets.CODEYBOT_TOKEN }}"} }'
     `);
     }
 
@@ -77,8 +77,8 @@ jobs:
       - name: Send Release Message
         uses: JamesIves/fetch-api-data-action@v2.1.0
         with:
-          endpoint: https://codey-bot.herokuapp.com/api/send
-          configuration: '{ "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"channelId": "${channelId}", "message": "${options.releaseMessage}", "secret": "\${{ secrets.CODEYBOT_TOKEN }}"} }'
+          endpoint: https://codey-bot.herokuapp.com/api/workflows/send
+          configuration: '{ "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"channelId": "${channelId}", "message": "${options.releaseMessage}", "authId": "${authId}", "secret": "\${{ secrets.CODEYBOT_TOKEN }}"} }'
     `);
     }
 
