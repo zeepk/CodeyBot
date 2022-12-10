@@ -8,6 +8,11 @@
         "start": "ts-node-dev index.ts",
         "heroku-postbuild": "cd client && npm install && npm run build"
     },
+    "pre-commit": [
+        "ts.check",
+        "build",
+        "add-build"
+    ],
     "keywords": [],
     "author": "",
     "license": "ISC",
